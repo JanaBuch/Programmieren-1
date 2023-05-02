@@ -1,0 +1,28 @@
+
+Muster
+<script> // Canvas-Element erstellen
+  const canvas = document.createElement("canvas");
+  canvas.width = 1000;
+  canvas.height = 1000;
+  document.body.appendChild(canvas);
+
+  
+  
+  // Canvas-Kontext und Kreis-Parameter
+  const ctx = canvas.getContext("2d");
+  const numCircles = 4;
+  const circleRadius = 150;
+  const circleSpacing = 100;
+  ctx.lineWidth = 3;
+  
+  // Schleife zur Erstellung von Kreisen
+  for (let i = 0; i < numCircles; i++) {
+    for (let j = 0; j < numCircles; j++) {
+      // Kreis zeichnen
+      ctx.beginPath();
+      ctx.arc(i * circleSpacing + circleRadius, j * circleSpacing + circleRadius, circleRadius, 0, 2 * Math.PI);
+      ctx.stroke();
+    }
+  }
+  
+</script>
