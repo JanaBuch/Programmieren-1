@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Zahlenfolgen</title>
+</head>
+<body>
+	<h1>Zahlenfolgen</h1>
+	<label for="anzahl">Anzahl der Zahlen:</label>
+	<input type="number" id="anzahl" name="anzahl" min="1">
+	<br><br>
+	<label for="folgen">Zahlenfolge auswählen:</label>
+	<select id="folgen" name="folgen">
+		<option value="1">Quadrat Zahl</option>
+		<option value="2">Fibonacci Reihe</option>
+		<option value="3">Primzahlen</option>
+        <option value="4">Verdoppeln</option>
+	</select>
+	<br><br>
+	<button onclick="generiereZahlen()">Zahlen generieren</button>
+	<br><br>
+	<div id="ergebnis"></div>
+	
+	<script src="zahlenfolgen.js"></script>
+</body>
+</html>
