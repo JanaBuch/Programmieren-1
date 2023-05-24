@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        var currentPlayer;
+        var data;
+
+        // 0 = empty
+        // 1 = player 1
+        // 2 = player 2
+
+        function setup() {
+            currentPlayer = 1;
+            data = [
+                [0, 0, 0],
+                [0, 0, 0],
+                [0, 0, 0],
+            ];
+            var playarea = document.querySelector("#spielfeld");
+
+             for (var row = 0; row < 3; row++) {
+           for (var col = 0; col < 3; col++) {
+             var field = document.createElement("div");
+            field.setAttribute("id", "field-" + col + "-" + row);
+             //field.innerHTML = "Field<br> Col " + col + "<br> Row " + row;
+             field.setAttribute("data-row", row);
+             field.setAttribute("data-col", col);
+             field.onclick = clickField;
+             playarea.appendChild(field);
+              }
+         }
+        }
+
+        function clickField(e) {
+            var clickedField = e.target;
+            var row = clickedField.getAttribute("data-row");
+            var col = clickedField.getAttribute("data-col");
+
+            //Spieler auswählen
+            if (data[row][col] == 0) {
+                // data[row][col] = currentPlayer;
+                clickedField.classList.add("player" + currentPlayer);
+                // clickedField.innerHTML = currentPlayer;
+
+                currentPlayer = currentPlayer == 1 ? 2 : 1;
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+    <div id="spielfeld">
+        <div id="feld1"></div>
+        <div id="feld2"></div>
+        <div id="feld3"></div>
+        <div id="feld4"></div>
+        <div id="feld5"></div>
+        <div id="feld6"></div>
+        <div id="feld7"></div>
+        <div id="feld8"></div>
+        <div id="feld9"></div>
+    </div>
+</body>
+
+<style>
+    #spielfeld {
+        display: grid;
+        grid-template-columns: 100px 100px 100px;
+        grid-template-rows: 100px 100px 100px;
+    }
+
+    #feld1,
+    #feld3,
+    #feld5,
+    #feld7,
+    #feld9 {
+        background-color: hsl(0, 100%, 79%);
+        
+    }
+
+    #feld2,
+    #feld4,
+    #feld6,
+    #feld8 {
+        background-color: blanchedalmond;
+    }
+
+    #spielfeld > div.player1 {
+  background-image: url(x.png);
+  background-size: contain;
+}
+
+#spielfeld > div.player2 {
+  background-image: url(o.png);
+  background-size: contain;
+}
+</style>
+
+</html>

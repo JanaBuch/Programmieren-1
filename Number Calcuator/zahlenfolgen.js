@@ -38,7 +38,7 @@ function generiereZahlen() {
 		var f1 = 1;
 		zahlen.push(f1);
 		
-		for (var i = 1; i <= anzahl; i++) {
+		for (var i = 2; i <= anzahl; i++) {
 			var fn = f1 * 2;
 			zahlen.push(fn);
 			f1 = fn;
