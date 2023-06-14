@@ -20,7 +20,7 @@ body {
   /* grid-template-columns: repeat(8, 1fr);
   grid-template-rows: auto; */
   perspective: 1000px;
-  margin: auto; */
+  margin: auto; 
 }
 
 .card {
