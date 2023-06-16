@@ -1,0 +1,25 @@
+<script src="exercise.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js%22%3E</script>
+
+<script>
+
+    
+    function setup()
+    createCanvas(1000, 1000);
+    grid(15, 5, 40);
+
+    let x = 0;
+    let y = 0;
+    function grid(numx, numy, size) {
+        console.log("grid");
+        for (let i = 0, i < numx; i++) {
+            for (let k = 0; k < numy; k++) {
+                rect(x, y, size)
+            }
+            y += size;
+            y = 0;
+
+        }
+    }
+
+</script>

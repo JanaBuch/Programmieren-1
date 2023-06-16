@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game</title>
+    <link href="style.css" rel="stylesheet">
+    
+</head>
+
+<body>
+<div>
+    <div>
+        <input type="button" class="difficulty" value="easy" id="30" onclick="checkDifficulty(event)"> <br>
+        <input type="button" class="difficulty" value="medium" id="40" onclick="checkDifficulty(event)"> <br>
+        <input type="button" class="difficulty" value="hard" id="50" onclick="checkDifficulty(event)"> <br>
+        <input type="button" class="difficulty" value="master" id="70" onclick="checkDifficulty(event)"> <br><br>
+     </div>
+    <div id="textSpace" class="secondaryDisplay">
+        Stats <br> <br>
+        Active Player <br>
+        <textarea id="ActivePlayerSpace"></textarea><br>
+    Jackalope (Player1)<br>
+    <textarea id="Player1TextSpace">
+        Matches:
+    </textarea id="Player2TextSpace"> <br>
+    Wolperdinger (Player2) <br>
+    <textarea id="gameStatusSpace">
+        Matches:
+    </textarea> <br>
+    Time passed<br>
+    <input type="text" id="Timer" Value="">
+    <br>
+
+    Game status <br>
+    <textarea>
+
+    </textarea>
+    <br><br>
+    <input type="button" value="Restart" onclick="resetGame()">
+
+    </div>
+</div>
+
+    <selection class="board" id="board">
+        
+            <!-- <div class="card" data-framework="Eye">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Eye.png" alt="Eye">
+        </div>
+
+       <div class="card" data-framework="Eye">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Eye.png" alt="Eye">
+        </div>
+
+       <div class="card" data-framework="Star">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Star.png" alt="Star">
+        </div>
+
+       <div class="card" data-framework="Star">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Star.png" alt="Star">
+        </div>
+
+       <div class="card" data-framework="Stag">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Stag.png" alt="Stag">
+        </div>
+
+       <div class="card" data-framework="Stag">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Stag.png" alt="Stag">
+        </div>
+
+       <div class="card" data-framework="Hand">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Hnadr.png" alt="Hand">
+        </div>
+
+       <div class="card" data-framework="Hand">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Handl.png" alt="Hand">
+        </div>
+
+       <div class="card" data-framework="Hare">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Hare.png" alt="Hare">
+        </div>
+
+       <div class="card" data-framework="Hare">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Hare.png" alt="Hare">
+        </div>
+
+       <div class="card" data-framework="Leaf">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Leaf.png" alt="Leaf">
+        </div>
+
+       <div class="card" data-framework="Leaf">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Leaf.png" alt="Leaf">
+        </div>
+
+       <div class="card" data-framework="Sun">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Sun.png" alt="Sun">
+        </div>
+
+       <div class="card" data-framework="Sun">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Sun.png" alt="Sun">
+        </div>
+
+       <div class="card" data-framework="Spirit">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Spirit.png" alt="Spirit">
+        </div>
+
+       <div class="card" data-framework="Spirit">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Spirit.png" alt="Spirit">
+        </div>
+
+       <div class="card" data-framework="Tree">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Tree.png" alt="Tree">
+        </div>
+
+       <div class="card" data-framework="Tree">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Tree.png" alt="Tree">
+        </div>
+
+       <div class="card" data-framework="Moon">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Moon.png" alt="Moon">
+
+        </div>
+
+       <div class="card" data-framework="Moon">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Moon.png" alt="Moon">
+        </div>
+
+       <div class="card" data-framework="DragonSkull">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Dragonskull.png" alt="DragonSkull">
+        </div>
+
+       <div class="card" data-framework="DragonSkull">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Dragonskull.png" alt="DragonSkull">
+        </div>
+
+       <div class="card" data-framework="Garlic">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="garlic.png" alt="Garlic">
+        </div>
+
+       <div class="card" data-framework="Garlic">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="garlic.png" alt="Garlic">
+        </div>
+
+       <div class="card" data-framework="Drop">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Waterdrop.png" alt="Drop">
+        </div>
+
+       <div class="card" data-framework="Drop">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Waterdrop.png" alt="Drop">
+        </div>
+
+       <div class="card" data-framework="Kiwi">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Kiwi.png" alt="Kiwi">
+        </div>
+
+       <div class="card" data-framework="Kiwi">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Kiwi.png" alt="Kiwi">
+        </div>
+
+       <div class="card" data-framework="Weasel">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Weasel.png" alt="Weasel">
+        </div>
+
+       <div class="card" data-framework="Weasel">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Weasel.png" alt="Weasel">
+        </div>
+
+       <div class="card" data-framework="Eternity">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Eternity.png" alt="Eternity">
+        </div>
+
+       <div class="card" data-framework="Eternity">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Eternity.png" alt="Eternity">
+        </div>
+
+       <div class="card" data-framework="Fire">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Fire.png" alt="Fire">
+        </div>
+
+       <div class="card" data-framework="Fire">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Fire.png" alt="Fire">
+        </div>
+
+       <div class="card" data-framework="Oroborus">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Oroborus.png" alt="Oroborus">
+        </div>
+
+       <div class="card" data-framework="Oroborus">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Oroborus.png" alt="Oroborus">
+        </div>
+
+       <div class="card" data-framework="Salamander">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Salamander.png" alt="Salamander">
+        </div>
+
+       <div class="card" data-framework="Salamander">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Salamander.png" alt="Salamander">
+        </div>
+
+       <div class="card" data-framework="Godess">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Godess.png" alt="Godess">
+        </div>
+
+       <div class="card" data-framework="Godess">
+            <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
+            <img class="back" src="Godess.png" alt="Godess">
+        </div> -->
+
+    <section>
+        <script src="MakeItWork.js"></script>
+</body>
+
+</html>
