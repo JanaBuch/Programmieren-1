@@ -7,8 +7,78 @@ let player = 1;
 let seconds = 0;
 let timer;
 
-//Karten erstellen funktion
+//Schwierigkeitsstufe checken
+function checkDifficulty(event) {
+  let amountOfCards = event.target.id;
+  // let amountOfCards = 6;
+  document.getElementById("board").style.gridTemplateColumns = `repeat(${amountOfCards / 5}, 20px)`;
 
+  let buttons = document.querySelectorAll(".difficulty");
+  buttons.forEach(function(buttons) {
+      buttons.style.display = "none";
+  })
+  createCards(amountOfCards);
+}
+
+//Karten erstellen funktion
+let dataSet = []; function createCards(amountOfCards) {
+  let counter = 0;
+  let dataVar = 1;
+  let childID = 0;
+  let parentID = 0;
+  for (let i = 1; i <= amountOfCards; i++) {
+    if (counter == 2) { dataVar++; counter = 0; } dataSet.push({ data: dataVar, text: dataVar, childID: childID, parentID: parentID, });
+    counter++;
+    childID++;
+    parentID++;
+  }
+  shuffleData(dataSet);
+  console.table(dataSet);
+  for (let i = 0; i < amountOfCards; i++) {
+    setTimeout(() => {        //creating the correct amount of playing cards, based on the entered difficulty(amountOfCards)         cardsParent = document.createElement("div");         cardsParent.classList.add("card");         cardsParent.id = "parent" + dataSet[i].parentID;           card = document.createElement("div");         card.data = dataSet[i].data;           
+      cards.id = "child" + dataSet[i].childID;
+
+      cards.style.backgroundImage = `url(.//${dataSet[i].data}.png)`;
+
+      cards.classList.add("card");
+      cards.classList.add("back-img");
+      text = document.createTextNode(dataSet[i].text);
+
+
+      cards.appendChild(text);
+
+      cards.addEventListener("click", function () {
+        cardClicked(event);
+      });
+
+      cardsParent.appendChild(cards);
+      document.getElementById("mainBoard").appendChild(cardsParent);
+      
+      
+      // Animation();       
+
+      let startPos = document.getElementById("start").getBoundingClientRect();
+      let endPos = document.getElementById("parent" + dataSet[i].parentID).getBoundingClientRect();
+      let child = document.getElementById("child" + dataSet[i].childID);
+
+
+      child.style.top = startPos.top - endPos.top + 'px'; // Ändere die Berechnung der top-Position
+      child.style.left = startPos.left - endPos.left + 'px'; // Ändere die Berechnung der left-Position
+
+      setTimeout(() => {
+        child.style.top = '0';
+        child.style.left = '0';
+      }, 20);
+      if (i === amountOfCards - 1) {
+        setTimeout(() => {
+          multiplayer();
+          document.getElementById("restart").style.display = "block";
+          // Hier kommt der Code, der nach der Wartezeit von 2 Sekunden ausgeführt werden soll
+        }, 700);
+      }
+    }, 60 * i);//speed for the animation
+  }
+}
 
 //change player (WIP), Der Spieler wechselt wenn eine runde vorbei ist
 function switchPlayer() {

@@ -11,20 +11,27 @@
 </head>
 
 <body>
-
-    <div id="textSpace">
+<div>
+    <div>
+        <input type="button" class="difficulty" value="easy" id="30" onclick="checkDifficulty(event)"> <br>
+        <input type="button" class="difficulty" value="medium" id="40" onclick="checkDifficulty(event)"> <br>
+        <input type="button" class="difficulty" value="hard" id="50" onclick="checkDifficulty(event)"> <br>
+        <input type="button" class="difficulty" value="master" id="70" onclick="checkDifficulty(event)"> <br><br>
+     </div>
+    <div id="textSpace" class="secondaryDisplay">
         Stats <br> <br>
         Active Player <br>
-        <textarea id="ActivePlayerSpace"></textarea>
-    Player1<br>
+        <textarea id="ActivePlayerSpace"></textarea><br>
+    Jackalope (Player1)<br>
     <textarea id="Player1TextSpace">
         Matches:
     </textarea id="Player2TextSpace"> <br>
-    Player2 <br>
+    Wolperdinger (Player2) <br>
     <textarea id="gameStatusSpace">
         Matches:
     </textarea> <br>
-    Time passed<input type="text" id="Timer" Value="">
+    Time passed<br>
+    <input type="text" id="Timer" Value="">
     <br>
 
     Game status <br>
@@ -35,10 +42,11 @@
     <input type="button" value="Restart" onclick="resetGame()">
 
     </div>
+</div>
 
-    <selection class="board">
+    <selection class="board" id="board">
         
-            <div class="card" data-framework="Eye">
+            <!-- <div class="card" data-framework="Eye">
             <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
             <img class="back" src="Eye.png" alt="Eye">
         </div>
@@ -237,7 +245,7 @@
        <div class="card" data-framework="Godess">
             <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
             <img class="back" src="Godess.png" alt="Godess">
-        </div>
+        </div> -->
 
     <section>
         <script src="MakeItWork.js"></script>
