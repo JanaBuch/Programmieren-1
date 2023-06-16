@@ -23,6 +23,19 @@ body {
   margin: auto; 
 }
 
+/* .card.easy {
+  display: none;
+}
+.card.medium {
+  display: none;
+}
+.card.hard {
+  display: none;
+}
+.card.master {
+  display: none;
+} */
+
 .card {
   width: 100px;
   height: 100px;

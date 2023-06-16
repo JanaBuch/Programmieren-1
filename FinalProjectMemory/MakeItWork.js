@@ -4,26 +4,25 @@ let hasFlippedCard = false;
 let firstCard, secondCard;
 let player = 1;
 
+let player1Matches = 0;
+let player2Matches = 0;
+
 let seconds = 0;
 let timer;
 
-//Karten erstellen funktion
+// function easyMode() {
+//   cards.forEach(card => {
+//     card.classList.remove('easy');
+//   })
+
+// }
 
 
 //change player (WIP), Der Spieler wechselt wenn eine runde vorbei ist
 function switchPlayer() {
-  if (player = 1) {
-    player = 2;
-    return
-  }
-  if (player = 2) {
-    player = 1;
-    return
-  }
+  player = player === 1 ? 2 : 1;
+  document.getElementById('ActivePlayerSpace').value = player;
 }
-
-//wählt den die Textbox für den Aktiven Spiler aus
-document.getElementById('ActivePlayerSpace').value = player;
 
 function startTimer() {
   timer = setInterval(updateTimer, 1000); // Timer wird jede Sekunde aktualisiert
@@ -68,6 +67,14 @@ function checkForMatch() {
 
     disableCards();
 
+    if (player === 1) {
+      player1Matches++;
+      document.getElementById('Player1TextSpace').value = 'Matches: ' + player1Matches;
+    } else {
+      player2Matches++;
+      document.getElementById('Player2TextSpace').value = 'Matches: ' + player2Matches;
+    }
+
     resetBoard();
 
     return;
@@ -82,6 +89,7 @@ function checkForMatch() {
       firstCard.classList.remove('flip');
       secondCard.classList.remove('flip');
       resetBoard();
+      switchPlayer();
     }, 900)
   }
 
