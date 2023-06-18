@@ -67,15 +67,9 @@ function checkForMatch() {
 
     disableCards();
 
-    if (player === 1) {
-      player1Matches++;
-      document.getElementById('Player1TextSpace').value = 'Matches: ' + player1Matches;
-    } else {
-      player2Matches++;
-      document.getElementById('Player2TextSpace').value = 'Matches: ' + player2Matches;
-    }
-
     resetBoard();
+
+    updateCounter();
 
     return;
 
@@ -128,11 +122,30 @@ function resetBoard() { //Ende der Runde, Zustand das Karten geklickt wurde wird
 
 cards.forEach(card => card.addEventListener('click', flipCard));
 
+function updateCounter() { //Wenn ein Match gefunden wurde wird der Matchcounter des jeweiligen Spielers raufgezählt
+  if (player === 1) {
+    player1Matches++;
+    document.getElementById('Player1TextSpace').value = 'Matches: ' + player1Matches;
+  } else {
+    player2Matches++;
+    document.getElementById('Player2TextSpace').value = 'Matches: ' + player2Matches;
+  }
+}
+
 function resetGame() { //Setzt das Spiel zurück
   hasFlippedCard = false;
   lockBoard = false;
   firstCard = null;
   secondCard = null;
+
+  // Spielstände und aktiven Spieler Zurücksetzen (does not work??)
+  player1Matches = 0;
+  player2Matches = 0;
+  player = 1;
+  
+document.getElementById('Player1TextSpace').value = 'Matches: ';
+  document.getElementById('Player2TextSpace').value = 'Matches: ';
+  
 
   // Zurücksetzen der Karten
   cards.forEach(card => {
@@ -146,6 +159,8 @@ function resetGame() { //Setzt das Spiel zurück
     let randomPos = Math.floor(Math.random() * 12);
     card.style.order = randomPos;
   });
+
+
 
   //add reset timer
 }
