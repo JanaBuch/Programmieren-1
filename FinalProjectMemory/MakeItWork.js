@@ -34,9 +34,8 @@ function updateTimer() {
 }
 
 function printTime() {
-  timer.value = seconds;
+  Timer.value = seconds;
 }
-
 
 //Flip thy cards
 function flipCard() {
@@ -133,25 +132,20 @@ function updateCounter() { //Wenn ein Match gefunden wurde wird der Matchcounter
   }
 }
 
-
-function resetScores() {
-  // Spielstände und aktiven Spieler Zurücksetzen (does not work??)
-  player1Matches = 0;
-  player2Matches = 0;
-  player = 1;
-  document.getElementById('Player1TextSpace').value = 'Matches: ';
-  document.getElementById('Player2TextSpace').value = 'Matches: ';
-  console.log(player1Matches)
-}
-
 function resetGame() { //Setzt das Spiel zurück
   hasFlippedCard = false;
   lockBoard = false;
   firstCard = null;
   secondCard = null;
 
-  resetScores();
-
+  // Spielstände und aktiven Spieler Zurücksetzen (does not work??)
+  player1Matches = 0;
+  player2Matches = 0;
+  player = 1;
+  
+document.getElementById('Player1TextSpace').value = 'Matches: ';
+  document.getElementById('Player2TextSpace').value = 'Matches: ';
+  
 
   // Zurücksetzen der Karten
   cards.forEach(card => {
