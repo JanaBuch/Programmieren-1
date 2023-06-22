@@ -25,7 +25,7 @@ function startTimer() {
   var startTime = new Date().getTime(); // Startzeit in Millisekunden
 
   // Aktualisiere den Timer alle 1 Sekunde
-  var timerInterval = setInterval(updateTimer, 1000);
+  timerInterval = setInterval(updateTimer, 1000);
 
   function updateTimer() {
     var currentTime = new Date().getTime(); // Aktuelle Zeit in Millisekunden
@@ -191,9 +191,24 @@ function resetGame() { //Setzt das Spiel zurück
     card.style.order = randomPos;
   });
 
-  //add reset timer
 }
 
+function resetTimer() {
+  var timerElement = document.getElementById('timer');
+  clearInterval(timerInterval); // Intervall wird gelöscht, Timer wird angehalten
+  timerElement.textContent = '00:00'; // Setze den Timer auf den Ausgangswert zurück
+  startTime = new Date().getTime(); // Setze die Startzeit auf die aktuelle Zeit
+  timerInterval = setInterval(updateTimer, 1000); // Starte den Timer wieder
+
+  function updateTimer() {
+    var currentTime = new Date().getTime();
+    var elapsedTime = currentTime - startTime;
+    var minutes = Math.floor(elapsedTime / 60000);
+    var seconds = Math.floor((elapsedTime % 60000) / 1000);
+    var formattedTime = ('0' + minutes).slice(-2) + ':' + ('0' + seconds).slice(-2);
+    timerElement.textContent = formattedTime;
+  }
+}
 
 
 // function markMatch { //Fehlgeschlagerner versuch den Karten erst nach einer kurzen Zeit einen Leuchteffekt
