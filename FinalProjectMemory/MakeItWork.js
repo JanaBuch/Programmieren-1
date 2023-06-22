@@ -2,40 +2,52 @@ const cards = document.querySelectorAll('.card');
 let lockBoard = false;
 let hasFlippedCard = false;
 let firstCard, secondCard;
-let player = 1;
 
+let player = 1;
 let player1Matches = 0;
 let player2Matches = 0;
 
-let seconds = 0;
-let timer;
-
-// function easyMode() {
-//   cards.forEach(card => {
-//     card.classList.remove('easy');
-//   })
-
-// }
+let timerInterval;
 
 
-//change player (WIP), Der Spieler wechselt wenn eine runde vorbei ist
+
+//switch player, Der Spieler wechselt wenn eine runde vorbei ist
 function switchPlayer() {
   player = player === 1 ? 2 : 1;
   document.getElementById('ActivePlayerSpace').value = player;
 }
 
+//timer
+window.addEventListener('DOMContentLoaded', startTimer);
+
 function startTimer() {
-  timer = setInterval(updateTimer, 1000); // Timer wird jede Sekunde aktualisiert
+  var timerElement = document.getElementById('timer');
+  var startTime = new Date().getTime(); // Startzeit in Millisekunden
+
+  // Aktualisiere den Timer alle 1 Sekunde
+  var timerInterval = setInterval(updateTimer, 1000);
+
+  function updateTimer() {
+    var currentTime = new Date().getTime(); // Aktuelle Zeit in Millisekunden
+    var elapsedTime = currentTime - startTime; // Vergangene Zeit in Millisekunden
+
+    // Berechne Minuten und Sekunden
+    var minutes = Math.floor(elapsedTime / 60000);
+    var seconds = Math.floor((elapsedTime % 60000) / 1000);
+
+    // Füge eine führende Null hinzu, wenn Minuten oder Sekunden einstellig sind
+    var formattedTime = ('0' + minutes).slice(-2) + ':' + ('0' + seconds).slice(-2);
+
+    // Aktualisiere den Timer im HTML
+    timerElement.textContent = formattedTime;
+  }
 }
 
-function updateTimer() {
-  seconds++;
-  printTime //timer wert in enstpechendes Feld printen
+function stopTimer() {
+  clearInterval(timerInterval); // Intervall wird gelöscht, Timer wird angehalten
 }
 
-function printTime() {
-  Timer.value = seconds;
-}
+
 
 //Flip thy cards
 function flipCard() {
@@ -70,6 +82,8 @@ function checkForMatch() {
     resetBoard();
 
     updateCounter();
+
+    checkAllCardsMatch();
 
     return;
 
@@ -132,6 +146,23 @@ function updateCounter() { //Wenn ein Match gefunden wurde wird der Matchcounter
   }
 }
 
+function checkAllCardsMatch() {
+  let allMatch = true;
+
+  cards.forEach(card => {
+    if (!card.classList.contains('match')) {
+      allMatch = false;
+      return;
+    }
+  });
+
+  if (allMatch) {//wenn alle Elemente die Klasse match haben wird diese funktion ausgeführt
+    console.log('spiel fertig');
+
+    stopTimer();
+  }
+}
+
 function resetGame() { //Setzt das Spiel zurück
   hasFlippedCard = false;
   lockBoard = false;
@@ -143,8 +174,8 @@ function resetGame() { //Setzt das Spiel zurück
   player2Matches = 0;
   player = 1;
   
-document.getElementById('Player1TextSpace').value = 'Matches: ';
-  document.getElementById('Player2TextSpace').value = 'Matches: ';
+// document.getElementById('Player1TextSpace').value = 'Matches: ';
+//   document.getElementById('Player2TextSpace').value = 'Matches: ';
   
 
   // Zurücksetzen der Karten
@@ -160,10 +191,10 @@ document.getElementById('Player1TextSpace').value = 'Matches: ';
     card.style.order = randomPos;
   });
 
-
-
   //add reset timer
 }
+
+
 
 // function markMatch { //Fehlgeschlagerner versuch den Karten erst nach einer kurzen Zeit einen Leuchteffekt
 // setTimeout(()=>{

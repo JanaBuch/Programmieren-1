@@ -11,31 +11,24 @@
 </head>
 
 <body>
-    <!-- <div>
-        <input type="button" value="easy" id="easy" onclick="easyMode()">
-        <input type="button" value="medium" id="medium" onclick="mediumMode()">
-        <input type="button" value="hard" id="hard" onclick="hardMode()">
-        <input type="button" value="master" id="master" onclick="masterMode()">
-    </div> -->
     <div id="textSpace">
         Stats <br> <br>
         Active Player <br>
         <textarea id="ActivePlayerSpace">Player 1</textarea>
+
         Player1<br>
         <textarea id="Player1TextSpace">
-        Matches:
-    </textarea id="Player2TextSpace"> <br>
-    Player2 <br>
-    <textarea id="gameStatusSpace">
-        Matches:
-    </textarea> <br>
-        Time passed<input type="text" id="Timer" Value="">
-        <br>
+        Matches: </textarea> <br>
 
-        Game status <br>
-        <textarea>
+        Player2 <br>
+        <textarea id="Player2TextSpace">
+        Matches:</textarea> <br><br>
 
-    </textarea>
+        Time passed<br>
+        <span id="timer">00:00</span>
+
+
+
         <br><br>
         <input type="button" value="Restart" onclick="resetGame()">
 
@@ -83,7 +76,7 @@
             <img class="back" src="Handl.png" alt="Hand">
         </div>
 
-        <div class="card easy" data-framework="Hare">
+        <!-- <div class="card easy" data-framework="Hare">
             <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
             <img class="back" src="Hare.png" alt="Hare">
         </div>
@@ -93,7 +86,7 @@
             <img class="back" src="Hare.png" alt="Hare">
         </div>
 
-        <!-- <div class="card easy" data-framework="Leaf">
+        <div class="card easy" data-framework="Leaf">
             <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
             <img class="back" src="Leaf.png" alt="Leaf">
         </div>
@@ -120,10 +113,10 @@
 
         <div class="card easy" data-framework="Spirit">
             <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
-            <img class="back" src="Spirit.png" alt="Spirit"> -->
+            <img class="back" src="Spirit.png" alt="Spirit">
         </div>
 
-        <!-- <div class="card easy" data-framework="Tree">
+        <div class="card easy" data-framework="Tree">
             <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
             <img class="back" src="Tree.png" alt="Tree">
         </div>
