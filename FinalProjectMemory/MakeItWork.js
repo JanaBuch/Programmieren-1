@@ -163,6 +163,9 @@ function checkAllCardsMatch() {
   }
 }
 
+
+const button = document.getElementById('Restart'); //Restart button wird in der Variable gespeichert
+
 function resetGame() { //Setzt das Spiel zurück
   hasFlippedCard = false;
   lockBoard = false;
@@ -174,33 +177,35 @@ function resetGame() { //Setzt das Spiel zurück
   player2Matches = 0;
   player = 1;
   
-// document.getElementById('Player1TextSpace').value = 'Matches: ';
-//   document.getElementById('Player2TextSpace').value = 'Matches: ';
-  
+document.getElementById('Player1TextSpace').value = 'Matches: ';
+  document.getElementById('Player2TextSpace').value = 'Matches: ';
+}
 
+function ResetCards() {
   // Zurücksetzen der Karten
   cards.forEach(card => {
     card.classList.remove('flip');
     card.classList.remove('match');
     card.addEventListener('click', flipCard);
   });
+}
 
-  // Karten neu mischen
+
+  function shuffleAnew() { // Karten neu mischen
   cards.forEach(card => {
     let randomPos = Math.floor(Math.random() * 12);
     card.style.order = randomPos;
   });
-
 }
 
-function resetTimer() {
+function resetTimer() { //zurücksetzen des Timers
   var timerElement = document.getElementById('timer');
   clearInterval(timerInterval); // Intervall wird gelöscht, Timer wird angehalten
   timerElement.textContent = '00:00'; // Setze den Timer auf den Ausgangswert zurück
   startTime = new Date().getTime(); // Setze die Startzeit auf die aktuelle Zeit
   timerInterval = setInterval(updateTimer, 1000); // Starte den Timer wieder
 
-  function updateTimer() {
+  function updateTimer() { //Timer wird neu gestartet
     var currentTime = new Date().getTime();
     var elapsedTime = currentTime - startTime;
     var minutes = Math.floor(elapsedTime / 60000);
@@ -209,6 +214,12 @@ function resetTimer() {
     timerElement.textContent = formattedTime;
   }
 }
+
+button.addEventListener('click', resetGame);
+button.addEventListener('click', ResetCards);
+button.addEventListener('click', shuffleAnew);
+button.addEventListener('click', resetTimer);
+
 
 
 // function markMatch { //Fehlgeschlagerner versuch den Karten erst nach einer kurzen Zeit einen Leuchteffekt
