@@ -9,7 +9,33 @@ let player2Matches = 0;
 
 let timerInterval;
 
+// const audio = new Audio('forest-wind-and-birds-6881.mp3');
+// audio.volume = 1;
+// let isPlaying = true;
 
+//Audio
+
+var audio = document.getElementById('audioPlayer'); //Hintergrund audio
+var playButton = document.getElementById('playButton');
+var isPlaying = false;
+
+var flippingSound = document.getElementById('flipSound')
+
+function togglePlayback() {
+  if (isPlaying) {
+    audio.pause();
+    playButton.textContent = '\u25B7';
+  } else {
+    audio.play();
+    playButton.textContent = '\u23F8';
+  }
+  
+  isPlaying = !isPlaying;
+}
+
+function flipSoundPlay() {
+  flippingSound.play
+}
 
 //switch player, Der Spieler wechselt wenn eine runde vorbei ist
 function switchPlayer() {
