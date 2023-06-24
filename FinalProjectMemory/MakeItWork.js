@@ -85,6 +85,8 @@ function checkForMatch() {
 
     checkAllCardsMatch();
 
+    vanishCard();
+
     return;
 
   }
@@ -163,6 +165,31 @@ function checkAllCardsMatch() {
   }
 }
 
+function vanishCard() {
+  const matchCards = document.querySelectorAll('.match');
+  setTimeout(() => {
+    matchCards.forEach(card => {
+      card.classList.add('matchfound');
+      card.classList.remove('match');
+      addFoundClassToChild();
+    });
+  }, 1500);
+}
+
+
+
+function addFoundClassToChild() {
+  const parentElements = document.querySelectorAll('.matchfound');
+
+  parentElements.forEach(parentElement => {
+    const childElement = parentElement.querySelector('.back');
+    if (childElement) {
+      childElement.classList.add('found');
+    }
+  });
+}
+
+
 
 const button = document.getElementById('Restart'); //Restart button wird in der Variable gespeichert
 
@@ -172,30 +199,41 @@ function resetGame() { //Setzt das Spiel zurück
   firstCard = null;
   secondCard = null;
 
-  // Spielstände und aktiven Spieler Zurücksetzen (does not work??)
+  // Spielstände und aktiven Spieler Zurücksetzen
   player1Matches = 0;
   player2Matches = 0;
   player = 1;
   
 document.getElementById('Player1TextSpace').value = 'Matches: ';
   document.getElementById('Player2TextSpace').value = 'Matches: ';
+  document.getElementById('ActivePlayerSpace').value = 'Player 1';
+}
+
+function resetVanish() {
+  const childElements = document.querySelectorAll('.found');
+  
+  setTimeout (() =>
+  childElements.forEach(childElement => {
+    childElement.classList.remove('found');
+  }), 600);
 }
 
 function ResetCards() {
   // Zurücksetzen der Karten
   cards.forEach(card => {
     card.classList.remove('flip');
-    card.classList.remove('match');
+    card.classList.remove('matchfound');
     card.addEventListener('click', flipCard);
   });
 }
 
 
   function shuffleAnew() { // Karten neu mischen
-  cards.forEach(card => {
+  setTimeout (() => 
+    cards.forEach(card => {
     let randomPos = Math.floor(Math.random() * 12);
     card.style.order = randomPos;
-  });
+  }), 600);
 }
 
 function resetTimer() { //zurücksetzen des Timers
@@ -215,10 +253,12 @@ function resetTimer() { //zurücksetzen des Timers
   }
 }
 
-button.addEventListener('click', resetGame);
+button.addEventListener('click', resetGame); //Event listener führen die funktionen aus
 button.addEventListener('click', ResetCards);
 button.addEventListener('click', shuffleAnew);
 button.addEventListener('click', resetTimer);
+button.addEventListener('click', resetVanish);
+
 
 
 
