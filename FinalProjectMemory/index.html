@@ -14,21 +14,21 @@
     <div id="textSpace">
         <div>
             Active Player <br>
-            <textarea id="ActivePlayerSpace">Player 1</textarea><br><br>
+            <textarea id="ActivePlayerSpace" class="display" readonly>Player 1</textarea><br><br>
         </div>
         <div>
             Player1<br>
-            <textarea id="Player1TextSpace">
+            <textarea id="Player1TextSpace" class="display" readonly>
         Matches: </textarea> <br>
 
             Player2 <br>
-            <textarea id="Player2TextSpace">
+            <textarea id="Player2TextSpace" class="display" readonly>
         Matches:</textarea> <br><br>
         </div>
 
         <div>
             Time passed<br>
-            <span id="timer">00:00</span>
+            <div id="timer">00:00</div>
 
             <br><br>
             <input type="button" value="Restart" id="Restart"> <br><br>
@@ -53,22 +53,22 @@
 
         <selection class="board">
             <div class="container">
-                <div class="card flipping matching" data-framework="Eye">
+                <div class="card" data-framework="Eye">
                     <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
                     <img class="back" src="Eye.png" alt="Eye">
                 </div>
 
-                <div class="card flipping matching" data-framework="Eye">
+                <div class="card" data-framework="Eye">
                     <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
                     <img class="back" src="Eye.png" alt="Eye">
                 </div>
 
-                <div class="card found" data-framework="Star">
+                <div class="card" data-framework="Star">
                     <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
                     <img class="back" src="Star.png" alt="Star">
                 </div>
 
-                <div class="card found" data-framework="Star">
+                <div class="card" data-framework="Star">
                     <img class="front" src="Memorykarten_vorderseite.png" alt="Front">
                     <img class="back" src="Star.png" alt="Star">
                 </div>
