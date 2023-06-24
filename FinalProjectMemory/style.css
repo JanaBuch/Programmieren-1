@@ -21,15 +21,17 @@ font-family: macondo;
 
 #textSpace
 {
-border: solid #eb2a8b;
+/* border: solid #eb2a8b; */
 }
 
 .display {
-  background-color: none;
+  background-color: transparent;
+  border: none;
+  resize: none;
 }
 
 #stats {
-  border: solid #2aeb71;
+  /* border: solid #2aeb71; */
   background-color: ;
   justify-content: center;
   align-items: center;
@@ -37,14 +39,14 @@ border: solid #eb2a8b;
 }
 
 .container {
-  border: solid #2a8eeb;
+  /* border: solid #2a8eeb; */
   display: grid;
 grid-template-columns: repeat(8, 1fr);
 grid-template-rows: repeat(5, 1fr);
 }
 
 .board {
-  border: solid #eb982a;
+  /* border: solid #eb982a; */
   /* width: ;
  height: 640px; */
   margin: auto;
@@ -56,7 +58,7 @@ grid-template-rows: repeat(5, 1fr);
 
 
 .card {
- border: solid #CEFFCD;
+ /* border: solid #CEFFCD; */
   width: 120px;
   height: 120px;
   margin: 5px;
@@ -82,10 +84,6 @@ grid-template-rows: repeat(5, 1fr);
 
 .match {
   box-shadow: 0px 0px 15px 0px #CEFFCD
-}
-
-.MissMatch {
-  box-shadow: 0px 0px 15px 0px #2d2e05
 }
 
 .front,
