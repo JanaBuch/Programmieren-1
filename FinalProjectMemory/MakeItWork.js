@@ -29,12 +29,8 @@ function togglePlayback() {
     audio.play();
     playButton.textContent = '\u23F8';
   }
-  
-  isPlaying = !isPlaying;
-}
 
-function flipSoundPlay() {
-  flippingSound.play
+  isPlaying = !isPlaying;
 }
 
 //switch player, Der Spieler wechselt wenn eine runde vorbei ist
@@ -80,6 +76,9 @@ function flipCard() {
   if (lockBoard) return;
   if (this === firstCard) return;
 
+  var flipSound = new Audio('clickselect-92098.mp3'); //plays a sound when card gets flipped
+  flipSound.volume = 0.15
+  flipSound.play();
 
   this.classList.add('flip');
 
@@ -112,6 +111,11 @@ function checkForMatch() {
     checkAllCardsMatch();
 
     vanishCard();
+
+    var matchBell = new Audio('glass-hit.mp3'); //plays a sound when the cards match up
+    matchBell.volume = 0.15
+    matchBell.play();
+
 
     return;
 
@@ -229,22 +233,27 @@ function resetGame() { //Setzt das Spiel zurück
   player1Matches = 0;
   player2Matches = 0;
   player = 1;
-  
-document.getElementById('Player1TextSpace').value = 'Matches: ';
+
+  document.getElementById('Player1TextSpace').value = 'Matches: ';
   document.getElementById('Player2TextSpace').value = 'Matches: ';
   document.getElementById('ActivePlayerSpace').value = 'Player 1';
 }
 
 function resetVanish() {
   const childElements = document.querySelectorAll('.found');
-  
-  setTimeout (() =>
-  childElements.forEach(childElement => {
-    childElement.classList.remove('found');
-  }), 600);
+
+  setTimeout(() =>
+    childElements.forEach(childElement => {
+      childElement.classList.remove('found');
+    }), 600);
 }
 
 function ResetCards() {
+
+  var dealingSound = new Audio('whoosh.mp3'); //plays a whoosh sound when the cards get reset
+  dealingSound.volume=0.15
+  dealingSound.play();
+
   // Zurücksetzen der Karten
   cards.forEach(card => {
     card.classList.remove('flip');
@@ -254,12 +263,12 @@ function ResetCards() {
 }
 
 
-  function shuffleAnew() { // Karten neu mischen
-  setTimeout (() => 
+function shuffleAnew() { // Karten neu mischen
+  setTimeout(() =>
     cards.forEach(card => {
-    let randomPos = Math.floor(Math.random() * 12);
-    card.style.order = randomPos;
-  }), 600);
+      let randomPos = Math.floor(Math.random() * 12);
+      card.style.order = randomPos;
+    }), 600);
 }
 
 function resetTimer() { //zurücksetzen des Timers
@@ -295,5 +304,7 @@ button.addEventListener('click', resetVanish);
 
 
 //if alle karten === klasse match, timer stoppen, sieger anzeigen, game decided
+
+// All sound effects from Pixabay
 
 
