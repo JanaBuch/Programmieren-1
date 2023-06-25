@@ -14,7 +14,7 @@ body {
   height: 100vh;
   display: flex;
   background: #7e927e;
-  background-image: url(forest-1072828_1280.jpg);
+  background-image: url(bg2.png);
   font-size: 16px;
   font-family: macondo;
   color: #ffffff;
@@ -81,7 +81,6 @@ body {
 
 #stats {
   /* border: solid #2aeb71; */
-  background-color: ;
   justify-content: center;
   align-items: center;
 
@@ -131,7 +130,7 @@ body {
   transform: rotateY(180deg);
 }
 
-.match {
+.matchMarker {
   box-shadow: 0px 0px 15px 0px #CEFFCD
 }
 

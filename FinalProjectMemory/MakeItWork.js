@@ -9,10 +9,6 @@ let player2Matches = 0;
 
 let timerInterval;
 
-// const audio = new Audio('forest-wind-and-birds-6881.mp3');
-// audio.volume = 1;
-// let isPlaying = true;
-
 //Audio
 
 var audio = document.getElementById('audioPlayer'); //Hintergrund audio
@@ -144,6 +140,8 @@ function disableCards() { //wird usgeführt sobald ein mach gefunden wurde
 
   firstCard.classList.add('match'); //Fügt ein eine CSS Klasse hinzu um den Karten einen Leuchteffekt zu geben
   secondCard.classList.add('match');
+  firstCard.classList.add('matchMarker'); //Fügt ein eine CSS Klasse hinzu um den Karten einen Leuchteffekt zu geben
+  secondCard.classList.add('matchMarker');
 
 }
 
@@ -201,7 +199,7 @@ function vanishCard() {
   setTimeout(() => {
     matchCards.forEach(card => {
       card.classList.add('matchfound');
-      card.classList.remove('match');
+      card.classList.remove('matchMarker');
       addFoundClassToChild();
     });
   }, 1500);
@@ -259,6 +257,7 @@ function ResetCards() {
   cards.forEach(card => {
     card.classList.remove('flip');
     card.classList.remove('matchfound');
+    card.classList.remove('match');
     card.addEventListener('click', flipCard);
   });
 }
@@ -294,17 +293,6 @@ button.addEventListener('click', ResetCards);
 button.addEventListener('click', shuffleAnew);
 button.addEventListener('click', resetTimer);
 button.addEventListener('click', resetVanish);
-
-
-
-
-// function markMatch { //Fehlgeschlagerner versuch den Karten erst nach einer kurzen Zeit einen Leuchteffekt
-// setTimeout(()=>{
-//   firstCard.classList.add('match');
-//   secondCard.classList.add('match');}, 500)}
-
-
-//if alle karten === klasse match, timer stoppen, sieger anzeigen, game decided
 
 // All sound effects from Pixabay
 
