@@ -67,6 +67,7 @@ function startTimer() {
 
 function stopTimer() {
   clearInterval(timerInterval); // Intervall wird gelöscht, Timer wird angehalten
+  console.log('timer stoped')
 }
 
 
@@ -251,7 +252,7 @@ function resetVanish() {
 function ResetCards() {
 
   var dealingSound = new Audio('whoosh.mp3'); //plays a whoosh sound when the cards get reset
-  dealingSound.volume=0.05
+  dealingSound.volume=0.15
   dealingSound.play();
 
   // Zurücksetzen der Karten

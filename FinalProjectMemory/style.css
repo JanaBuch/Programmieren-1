@@ -14,20 +14,69 @@ body {
   height: 100vh;
   display: flex;
   background: #7e927e;
-  color: #000;
-font-size: 16px;
-font-family: macondo;
+  background-image: url(forest-1072828_1280.jpg);
+  font-size: 16px;
+  font-family: macondo;
+  color: #ffffff;
 }
 
-#textSpace
-{
-/* border: solid #eb2a8b; */
+#textSpace {
+  /* border: solid #eb2a8b; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.textElement {
+  /* border: solid #2aeb97; */
+  background-color: #ceffcd4e;
+  /* background-image: url(goldenbg.png); */
+  background-size: 150px;
+  box-shadow: 0 0 10px 2px #ceffcd9a;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 3px;
+
+
 }
 
 .display {
   background-color: transparent;
   border: none;
   resize: none;
+  color: #ffffff;
+  margin-top: 5px;
+}
+
+#restartButton {
+  align-self: center;
+}
+
+#Restart {
+  border: none;
+  padding: 10px;
+  border-radius: 1px;
+  color: #ffffff;
+  background-image: url(goldenbg.png);
+  background-size: 120px;
+}
+
+#audioElement {
+  align-self: center;
+}
+
+#playButton {
+  border: none;
+  margin-top: 5px;
+  margin-left: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 1px;
+  color: #ffffff;
+  background-image: url(goldenbg.png);
+  background-size: 120px;
 }
 
 #stats {
@@ -35,14 +84,14 @@ font-family: macondo;
   background-color: ;
   justify-content: center;
   align-items: center;
-  
+
 }
 
 .container {
   /* border: solid #2a8eeb; */
   display: grid;
-grid-template-columns: repeat(8, 1fr);
-grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(5, 1fr);
 }
 
 .board {
@@ -53,12 +102,12 @@ grid-template-rows: repeat(5, 1fr);
   /* display: flex;
   flex-wrap: wrap; */
   perspective: 1000px;
-  margin: auto; 
+  margin: auto;
 }
 
 
 .card {
- /* border: solid #CEFFCD; */
+  /* border: solid #CEFFCD; */
   width: 120px;
   height: 120px;
   margin: 5px;
@@ -103,10 +152,10 @@ grid-template-rows: repeat(5, 1fr);
   opacity: 0;
 }
 
-@media (max-width: 850px) {
+@media (max-width: 1227px) {
   .card {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
   }
 
   .container {
@@ -115,10 +164,29 @@ grid-template-rows: repeat(5, 1fr);
   }
 }
 
+@media (max-width: 787px) {
+#textSpace{
+max-width: 90px;
+} 
 
+  .card {
+    width: 80px;
+    height: 80px;
+  }
+}
 
-/*.front {display: none;}*/
+@media (max-width: 560px) {
+  
+    .card {
+      width: 65px;
+      height: 65px;
+    }
 
-/*.back {
-    display: none;
-}*/
+    body {
+      font-size: 12px;
+    }
+
+    .display {
+      font-size: 12px;
+    }
+  }
