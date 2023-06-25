@@ -10,14 +10,13 @@ let player2Matches = 0;
 let timerInterval;
 
 //Audio
-
-var audio = document.getElementById('audioPlayer'); //Hintergrund audio
+var audio = document.getElementById('audioPlayer'); //background audio
 var playButton = document.getElementById('playButton');
 var isPlaying = false;
 
 var flippingSound = document.getElementById('flipSound')
 
-function togglePlayback() {
+function togglePlayback() { //button switches inbetween play and pause icon
   if (isPlaying) {
     audio.pause();
     playButton.textContent = '\u25B7';
@@ -26,58 +25,53 @@ function togglePlayback() {
     playButton.textContent = '\u23F8';
   }
 
-  isPlaying = !isPlaying;
+  isPlaying = !isPlaying; //plays the music when paused, pauses the music then played. Reverses the current state
 }
 
-//switch player, Der Spieler wechselt wenn eine runde vorbei ist
+//switch player, alternates between player 1 and 2
 function switchPlayer() {
   player = player === 1 ? 2 : 1;
   document.getElementById('ActivePlayerSpace').value = player;
 }
 
 //timer
-window.addEventListener('DOMContentLoaded', startTimer);
+window.addEventListener('DOMContentLoaded', startTimer); //timer starts when the page is loaded
 
 function startTimer() {
   var timerElement = document.getElementById('timer');
-  var startTime = new Date().getTime(); // Startzeit in Millisekunden
+  var startTime = new Date().getTime(); // starting time is milliseconds
 
-  // Aktualisiere den Timer alle 1 Sekunde
-  timerInterval = setInterval(updateTimer, 1000);
+  timerInterval = setInterval(updateTimer, 1000); // refresh timer every second
 
   function updateTimer() {
-    var currentTime = new Date().getTime(); // Aktuelle Zeit in Millisekunden
-    var elapsedTime = currentTime - startTime; // Vergangene Zeit in Millisekunden
+    var currentTime = new Date().getTime(); // current time in miliseconds
+    var elapsedTime = currentTime - startTime; // elapsedt time in miliseconds
 
-    // Berechne Minuten und Sekunden
-    var minutes = Math.floor(elapsedTime / 60000);
+    var minutes = Math.floor(elapsedTime / 60000); // calculate minutes and secounds
     var seconds = Math.floor((elapsedTime % 60000) / 1000);
 
-    // Füge eine führende Null hinzu, wenn Minuten oder Sekunden einstellig sind
-    var formattedTime = ('0' + minutes).slice(-2) + ':' + ('0' + seconds).slice(-2);
+    var formattedTime = ('0' + minutes).slice(-2) + ':' + ('0' + seconds).slice(-2); // Put a zero infront of the curent value, if minutes or seconds are one digit
 
-    // Aktualisiere den Timer im HTML
-    timerElement.textContent = formattedTime;
+    timerElement.textContent = formattedTime; // put timer value in the corresponding html element
   }
 }
 
 function stopTimer() {
-  clearInterval(timerInterval); // Intervall wird gelöscht, Timer wird angehalten
-  console.log('timer stoped')
+  clearInterval(timerInterval); // Timer interval gets deleted, this stops the timer
 }
 
 
 
 //Flip thy cards
 function flipCard() {
-  if (lockBoard) return;
+  if (lockBoard) return; // if the board is locked, this function won't execute 
   if (this === firstCard) return;
 
   var flipSound = new Audio('clickselect-92098.mp3'); //plays a sound when card gets flipped
   flipSound.volume = 0.15
   flipSound.play();
 
-  this.classList.add('flip');
+  this.classList.add('flip'); //adds flip class to display the cards backside
 
   if (!hasFlippedCard) {
 
@@ -97,7 +91,7 @@ function flipCard() {
 //disable the cards when a match has been found
 function checkForMatch() {
 
-  if (firstCard.dataset.framework === secondCard.dataset.framework) { //Wenn die Karten gleich sind werden sie Aufgedeckt gelassen
+  if (firstCard.dataset.framework === secondCard.dataset.framework) { //If the symbols match, leave the cards open
 
     disableCards();
 
@@ -121,8 +115,7 @@ function checkForMatch() {
   //reset the cards when no match is found
   else {
     lockBoard = true;
-    //kenzeichnungsfunktion für missmatch hier hinzufügen
-    setTimeout(() => { //Karten bleiben für einen Moment aufgedeckt, und drehen sich dann wieder
+    setTimeout(() => { //Cards stay flipped for a moment, then the flip class gets removed to turn them again
       firstCard.classList.remove('flip');
       secondCard.classList.remove('flip');
       resetBoard();
@@ -132,20 +125,20 @@ function checkForMatch() {
 
 }
 
-function disableCards() { //wird usgeführt sobald ein mach gefunden wurde
+function disableCards() { //executes when a match is found
 
-  firstCard.removeEventListener('click', flipCard); //der eventlistener wird entfernt so das die karte nich mehr auf ein click reagiert
+  firstCard.removeEventListener('click', flipCard); //Remove event listener so the card won't respond to a click anymore
 
-  secondCard.removeEventListener('click', flipCard);
+  secondCard.removeEventListener('click', flipCard);//Same for the secod card
 
-  firstCard.classList.add('match'); //Fügt ein eine CSS Klasse hinzu um den Karten einen Leuchteffekt zu geben
+  firstCard.classList.add('match'); //Marks the cards as matched
   secondCard.classList.add('match');
-  firstCard.classList.add('matchMarker'); //Fügt ein eine CSS Klasse hinzu um den Karten einen Leuchteffekt zu geben
+  firstCard.classList.add('matchMarker'); //Adds a CSS class for the glow effect
   secondCard.classList.add('matchMarker');
 
 }
 
-function resetBoard() { //Ende der Runde, Zustand das Karten geklickt wurde wird Zurückgesetzt.
+function resetBoard() { //End of turn, state of the cards get reset
 
   [hasFlippedCard, lockBoard] = [false, false];
 
@@ -157,7 +150,7 @@ function resetBoard() { //Ende der Runde, Zustand das Karten geklickt wurde wird
 
   cards.forEach(card => {
 
-    let ramdomPos = Math.floor(Math.random() * 12); //Karten bekommmen eine Zufällige position zugewiesen
+    let ramdomPos = Math.floor(Math.random() * 12); //Cards get assined a random possition
 
     card.style.order = ramdomPos;
 
@@ -167,7 +160,7 @@ function resetBoard() { //Ende der Runde, Zustand das Karten geklickt wurde wird
 
 cards.forEach(card => card.addEventListener('click', flipCard));
 
-function updateCounter() { //Wenn ein Match gefunden wurde wird der Matchcounter des jeweiligen Spielers raufgezählt
+function updateCounter() { //If a player finds a match, their counter gets increased by one
   if (player === 1) {
     player1Matches++;
     document.getElementById('Player1TextSpace').value = 'Matches: ' + player1Matches;
@@ -187,14 +180,12 @@ function checkAllCardsMatch() {
     }
   });
 
-  if (allMatch) {//wenn alle Elemente die Klasse match haben wird diese funktion ausgeführt
-    console.log('spiel fertig');
-
+  if (allMatch) {//if all elements have the class 'match' the timer gets stopped
     stopTimer();
   }
 }
 
-function vanishCard() {
+function vanishCard() { //removes the glow and adds a class to the backside div
   const matchCards = document.querySelectorAll('.match');
   setTimeout(() => {
     matchCards.forEach(card => {
@@ -207,7 +198,7 @@ function vanishCard() {
 
 
 
-function addFoundClassToChild() {
+function addFoundClassToChild() { //adds a CSS class to the backside so it gets invisible
   const parentElements = document.querySelectorAll('.matchfound');
 
   parentElements.forEach(parentElement => {
@@ -220,25 +211,24 @@ function addFoundClassToChild() {
 
 
 
-const button = document.getElementById('Restart'); //Restart button wird in der Variable gespeichert
+const button = document.getElementById('Restart'); //Restart button gets stored in a variable
 
-function resetGame() { //Setzt das Spiel zurück
+function resetGame() { //resets the values
   hasFlippedCard = false;
   lockBoard = false;
   firstCard = null;
   secondCard = null;
 
-  // Spielstände und aktiven Spieler Zurücksetzen
   player1Matches = 0;
   player2Matches = 0;
   player = 1;
 
-  document.getElementById('Player1TextSpace').value = 'Matches: ';
+  document.getElementById('Player1TextSpace').value = 'Matches: '; //put the dispay back to start
   document.getElementById('Player2TextSpace').value = 'Matches: ';
   document.getElementById('ActivePlayerSpace').value = 'Player 1';
 }
 
-function resetVanish() {
+function resetVanish() { //remove found so the backsides are visisble again
   const childElements = document.querySelectorAll('.found');
 
   setTimeout(() =>
@@ -253,8 +243,7 @@ function ResetCards() {
   dealingSound.volume=0.15
   dealingSound.play();
 
-  // Zurücksetzen der Karten
-  cards.forEach(card => {
+  cards.forEach(card => { //reset the cards
     card.classList.remove('flip');
     card.classList.remove('matchfound');
     card.classList.remove('match');
@@ -262,8 +251,7 @@ function ResetCards() {
   });
 }
 
-
-function shuffleAnew() { // Karten neu mischen
+function shuffleAnew() { // shuffle the cards anew, with a delay so the cards get suffeled after they turned back
   setTimeout(() =>
     cards.forEach(card => {
       let randomPos = Math.floor(Math.random() * 12);
@@ -271,14 +259,14 @@ function shuffleAnew() { // Karten neu mischen
     }), 600);
 }
 
-function resetTimer() { //zurücksetzen des Timers
+function resetTimer() { //reset the timer
   var timerElement = document.getElementById('timer');
-  clearInterval(timerInterval); // Intervall wird gelöscht, Timer wird angehalten
-  timerElement.textContent = '00:00'; // Setze den Timer auf den Ausgangswert zurück
-  startTime = new Date().getTime(); // Setze die Startzeit auf die aktuelle Zeit
-  timerInterval = setInterval(updateTimer, 1000); // Starte den Timer wieder
+  clearInterval(timerInterval); // stop timer
+  timerElement.textContent = '00:00'; // reset value
+  startTime = new Date().getTime(); 
+  timerInterval = setInterval(updateTimer, 1000); // set the interval anew
 
-  function updateTimer() { //Timer wird neu gestartet
+  function updateTimer() { //restart the timer
     var currentTime = new Date().getTime();
     var elapsedTime = currentTime - startTime;
     var minutes = Math.floor(elapsedTime / 60000);
@@ -288,12 +276,11 @@ function resetTimer() { //zurücksetzen des Timers
   }
 }
 
-button.addEventListener('click', resetGame); //Event listener führen die funktionen aus
+button.addEventListener('click', resetGame); //Event listener to call all the reset functions
 button.addEventListener('click', ResetCards);
 button.addEventListener('click', shuffleAnew);
 button.addEventListener('click', resetTimer);
 button.addEventListener('click', resetVanish);
 
 // All sound effects from Pixabay
-
-
+//All images made by me

@@ -1,8 +1,9 @@
-@font-face {
+ @font-face { /*Include chosen font */
   font-family: 'macondo';
   src: url(MacondoSwashCaps-Regular.ttf);
 }
 
+/* global style */
 * {
   padding: 0;
   margin: 0;
@@ -20,6 +21,7 @@ body {
   color: #ffffff;
 }
 
+/* side elements */
 #textSpace {
   /* border: solid #eb2a8b; */
   display: flex;
@@ -79,13 +81,7 @@ body {
   background-size: 120px;
 }
 
-#stats {
-  /* border: solid #2aeb71; */
-  justify-content: center;
-  align-items: center;
-
-}
-
+/* board and cards style */
 .container {
   /* border: solid #2a8eeb; */
   display: grid;
@@ -151,6 +147,7 @@ body {
   opacity: 0;
 }
 
+/* media queries */
 @media (max-width: 1227px) {
   .card {
     width: 90px;
@@ -189,3 +186,4 @@ max-width: 90px;
       font-size: 12px;
     }
   }
+  
