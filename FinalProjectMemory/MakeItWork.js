@@ -91,6 +91,7 @@ function flipCard() {
 //disable the cards when a match has been found
 function checkForMatch() {
 
+
   if (firstCard.dataset.framework === secondCard.dataset.framework) { //If the symbols match, leave the cards open
 
     disableCards();
@@ -106,7 +107,6 @@ function checkForMatch() {
     var matchBell = new Audio('glass-hit.mp3'); //plays a sound when the cards match up
     matchBell.volume = 0.15
     matchBell.play();
-
 
     return;
 
